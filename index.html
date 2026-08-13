@@ -765,7 +765,7 @@ footer{ padding:70px 0 34px; border-top:1px solid var(--line); }
     <div class="footer-about">
       <div class="footer-about-image">
         <!-- Replace with images/owner.jpg once you have a real photo -->
-        <img src="owner.jpg" alt="Isuru Withanage — Founder" onerror="this.style.display='none'">
+        <img src="images/owner.jpg" alt="Isuru Withanage — Founder" onerror="this.style.display='none'">
       </div>
       <div class="footer-about-content">
         <h3>Isuru Withanage</h3>
@@ -925,44 +925,23 @@ window.addEventListener('load', updateActiveLink);
    two arrays, persisted to localStorage. The admin
    panel adds to / deletes from the SAME arrays used
    to render the public sections, so every change is
-   reflected immediately, including removing the
-   studio's starter/demo entries.
+   reflected immediately.
+
+   NOTE: This site ships with NO reference/demo content.
+   Both sections start empty until you add real work
+   and real brands through the Admin panel.
    ============================================ */
 const WORK_KEY = 'ip_work_items';
 const BRAND_KEY = 'ip_brand_items';
 
 const CAT_LABELS = { songs:'Original Song', covers:'Cover Record', commercials:'Commercial', other:'Other' };
 
-// Starter/demo content — fully editable and deletable from the admin panel.
-// Replace or remove any of these from Admin → Our Work / Brands.
-const SEED_WORK = [
-  { id:'seed-1', title:'Nightfall Radio',            category:'songs',       youtubeId:null, image:null, link:null },
-  { id:'seed-2', title:'Solara Coffee — Launch Film', category:'commercials', youtubeId:null, image:null, link:null },
-  { id:'seed-3', title:"Yesterday's Static (Cover)",  category:'covers',      youtubeId:null, image:null, link:null },
-  { id:'seed-4', title:'Concrete Bloom',              category:'songs',       youtubeId:null, image:null, link:null },
-  { id:'seed-5', title:'Studio Sessions Vol. 1',      category:'other',       youtubeId:null, image:null, link:null },
-  { id:'seed-6', title:'Northline Motors — Spot',     category:'commercials', youtubeId:null, image:null, link:null },
-  { id:'seed-7', title:'Blue in December (Cover)',    category:'covers',      youtubeId:null, image:null, link:null },
-  { id:'seed-8', title:'Podcast: The Playback',       category:'other',       youtubeId:null, image:null, link:null },
-  { id:'seed-9', title:'Low Light',                   category:'songs',       youtubeId:null, image:null, link:null }
-];
-const SEED_BRANDS = [
-  { id:'seed-b1', name:'Solara',       image:null },
-  { id:'seed-b2', name:'Northline',    image:null },
-  { id:'seed-b3', name:'Orbit Media',  image:null },
-  { id:'seed-b4', name:'Halo Works',   image:null },
-  { id:'seed-b5', name:'Vela Studios', image:null },
-  { id:'seed-b6', name:'Cedar & Co',   image:null },
-  { id:'seed-b7', name:'Prism Records',image:null },
-  { id:'seed-b8', name:'Monolith',     image:null }
-];
-
 let workItems = [];
 let brandItems = [];
 
 function loadWork(){
   const stored = localStorage.getItem(WORK_KEY);
-  workItems = stored ? JSON.parse(stored) : SEED_WORK.slice();
+  workItems = stored ? JSON.parse(stored) : [];
 }
 function saveWork(){
   localStorage.setItem(WORK_KEY, JSON.stringify(workItems));
@@ -971,7 +950,7 @@ function saveWork(){
 }
 function loadBrands(){
   const stored = localStorage.getItem(BRAND_KEY);
-  brandItems = stored ? JSON.parse(stored) : SEED_BRANDS.slice();
+  brandItems = stored ? JSON.parse(stored) : [];
 }
 function saveBrands(){
   localStorage.setItem(BRAND_KEY, JSON.stringify(brandItems));
